@@ -1,0 +1,24 @@
+name: auro_stream_signaling
+description: "Auro Stream Signaling for iOS/Android/Desktop/Web"
+version: 0.0.1
+homepage: https://github.com/AUVNET/AuroStreamSignaling
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  pointycastle: ^3.7.4
+  logging: ^1.2.0
+  js: ^0.6.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
