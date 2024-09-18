@@ -77,7 +77,7 @@ void onJoinRoom({
   listener(data) {
     final roomAction = RoomActionModel(
       roomID: data['roomId'],
-      userID: data['userId'],
+      userID: data['userID'],
       username: data['userName'],
     );
     handler(roomAction);
@@ -99,7 +99,7 @@ void onLeaveRoom({
   listener(data) {
     final roomAction = RoomActionModel(
       roomID: data['roomId'],
-      userID: data['userId'],
+      userID: data['userID'],
       username: data['userName'],
     );
     handler(roomAction);

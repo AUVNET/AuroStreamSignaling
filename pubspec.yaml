@@ -1,6 +1,6 @@
 name: auro_stream_signaling
 description: "Auro Stream Signaling for iOS/Android/Desktop/Web"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/AUVNET/AuroStreamSignaling
 
 environment:

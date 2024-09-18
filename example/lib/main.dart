@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 void main() {
   AuroStreamSignaling.initialize(
-    projectId: 'f7675299b1b7ae6dab3dc0df61c3d88e',
-    apiKey: '98dc785d2c5e50bc3b22b5f1.c3b883ebbdc5294c93217e77aa3a010abd9a69cd05141e68cdf5b3437a536199ae04c249793d5d5e6acc525afaec09223f9dfbf7931b8eac1f758664f82e9e894871a0106dc15ebdf5c7597b5b70189edbd8dd73930e323b22fd2f383f842266267fb949761ab0.0049bc47ee005b242b6a6bb2',
-    port: '1024',
+    projectId: 'your_project_id',
+    apiKey: 'your_api_key',
+    port: 'your_port',
   );
   runApp(const MyApp());
 }
