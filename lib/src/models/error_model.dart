@@ -7,15 +7,13 @@ enum ErrorCases {
   sendMessageToAll,
   sendMessage,
   sendMessageToUser,
+  none,
 }
 
 ErrorCases stringToErrorCases(String inputString) {
   return ErrorCases.values.firstWhere(
         (e) => e.toString().split('.').last == inputString,
-    orElse: () {
-      // Optionally, handle the case where the string does not match any enum value.
-      throw ArgumentError('Unknown ErrorCases value: $inputString');
-    },
+    orElse: () => ErrorCases.none,
   );
 }
 
@@ -24,16 +22,16 @@ enum ErrorMSG {
   authorizationFailed,
   encryptionFailed,
   roomNotFound,
+  none,
 }
 
 ErrorMSG stringToErrorMSG(String inputString) {
   return ErrorMSG.values.firstWhere(
         (e) => e.toString().split('.').last == inputString,
-    orElse: () {
-      throw ArgumentError('Unknown ErrorMSG value: $inputString');
-    },
+    orElse: () => ErrorMSG.none,
   );
 }
+
 
 class ErrorModel {
   final ErrorCases eventName;

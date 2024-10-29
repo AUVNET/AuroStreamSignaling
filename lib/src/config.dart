@@ -38,6 +38,7 @@ class AuroStreamSignaling {
   }
 
   void _mainValidator() {
+    if (!isConnected()) return;
     if (_instanceId == null || _instanceId!.isEmpty) {
       throw ArgumentError("AuroStream is not initialized with a instanceId.");
     }
@@ -130,8 +131,7 @@ class AuroStreamSignaling {
 
   /// Check if server connected
   bool isConnected() {
-    _mainValidator();
-    return _socketService!.isConnected;
+    return _socketService?.isConnected ?? false;
   }
 
   /// Disconnect server connection
