@@ -283,14 +283,18 @@ class AuroStreamSignaling {
   ///   chat space.
   void createRoom({
     required String roomId,
+    required String username,
+    required bool willJoin,
   }) {
-    _mainValidator();
-    if (roomId.isEmpty) {
-      throw ArgumentError("Room ID cannot be empty.");
-    }
+    _validator(
+      roomId: roomId,
+      username: username,
+    );
     emitCreateRoom(
       socket: _socketService!,
       roomId: roomId,
+      username: username,
+      willJoin: willJoin,
     );
   }
 

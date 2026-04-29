@@ -56,8 +56,12 @@ class SignalingService {
         ..on('error-message', (data) {
           if (whenGetError != null) {
             final error = ErrorModel(
-              eventName: stringToErrorCases(data['eventName']),
-              message: stringToErrorMSG(data['message']),
+              eventName: data['eventName'] != null
+                  ? stringToErrorCases(data['eventName'])
+                  : ErrorCases.none,
+              message: data['message'] != null
+                  ? stringToErrorMSG(data['message'])
+                  : ErrorMSG.none,
             );
             whenGetError(error);
           }

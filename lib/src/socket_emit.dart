@@ -21,9 +21,13 @@ void _baseEmitter({
 void emitCreateRoom({
   required SignalingService socket,
   required String roomId,
+  required bool willJoin,
+  required String username,
 }) {
   final Map<String, dynamic> data = {
     "roomId": roomId,
+    "willJoin": willJoin,
+    "userName": username,
   };
   _baseEmitter(socket: socket, event: 'create-room', data: data);
 }

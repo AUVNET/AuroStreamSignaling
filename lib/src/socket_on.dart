@@ -79,6 +79,7 @@ void onJoinRoom({
       roomID: data['roomId'],
       userID: data['userID'],
       username: data['userName'],
+      isDuplicate: data['isDuplicate'],
     );
     handler(roomAction);
   }

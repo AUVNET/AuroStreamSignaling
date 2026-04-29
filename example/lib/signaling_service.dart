@@ -110,6 +110,8 @@ class AuroStreamSignalingServices {
   void createRoom() async {
     AuroStreamSignaling.instance.createRoom(
       roomId: roomId!,
+      willJoin: true,
+      username: username!,
     );
   }
 
