@@ -7,6 +7,7 @@ class AuroStreamSignaling {
   static String? _instanceId;
   static String? _apiKey;
   static String? _port;
+  static String? _userToken;
   static SignalingService? _socketService;
   static AuroStreamSignaling? _instance;
 
@@ -22,7 +23,9 @@ class AuroStreamSignaling {
     required String projectId,
     required String apiKey,
     required String port,
+    String? userToken,
   }) {
+    _userToken = userToken;
     if (projectId.isEmpty) {
       throw ArgumentError("ProjectId cannot be empty.");
     }
@@ -35,6 +38,16 @@ class AuroStreamSignaling {
     _instanceId = projectId;
     _apiKey = apiKey;
     _port = port;
+  }
+
+  /// Optional end-user token (HS256 JWT signed by your backend with the
+  /// project's auth secret, `sub` = your user id). When the project enables
+  /// auth, every relayed message carries the verified sender as
+  /// `senderUserId` (and backend-emitted events carry `fromServer: true`).
+  /// Used by the next (re)connection.
+  static void setUserToken(String? userToken) {
+    _userToken = userToken;
+    _socketService?.setUserToken(userToken);
   }
 
   void _mainValidator() {
@@ -120,6 +133,7 @@ class AuroStreamSignaling {
     _socketService?.connect(
       instanceId: _instanceId!,
       apiKey: _apiKey!,
+      userToken: _userToken,
       whenConnect: whenConnect,
       whenConnectError: whenConnectError,
       whenReconnect: whenReconnect,
@@ -134,10 +148,14 @@ class AuroStreamSignaling {
     return _socketService?.isConnected ?? false;
   }
 
-  /// Disconnect server connection
+  /// Disconnect the server connection and stop any reconnection attempts.
+  ///
+  /// Safe to call at any time, including when the socket was never connected
+  /// or is currently retrying. It previously ran `_mainValidator()` and then
+  /// dereferenced `_socketService!`, so calling it on a socket that was stuck
+  /// reconnecting threw instead of stopping the retry loop.
   void disconnectServer() {
-    _mainValidator();
-    _socketService!.disconnect();
+    _socketService?.disconnect();
   }
 
   void onCreateRoomListenerForME({
