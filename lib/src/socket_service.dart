@@ -100,6 +100,7 @@ class SignalingService {
               message: data['message'] != null
                   ? stringToErrorMSG(data['message'])
                   : ErrorMSG.none,
+              roomId: errorRoomIdOf(data),
             );
             whenGetError(error);
           }
